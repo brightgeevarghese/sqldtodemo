@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface AddressService {
     Optional<AddressDto> findAddressById(Integer addressId);
-    void updateAddress(AddressDto address);
+    void updateAddress(Integer id, AddressDto address);
 }

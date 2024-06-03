@@ -30,11 +30,15 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public void updateAddress(AddressDto address) {
-        Address newAddress = new Address();
-        newAddress.setStreet(address.getStreet());
-        newAddress.setCity(address.getCity());
-        newAddress.setState(address.getState());
-        addressRepository.save(newAddress);
+    public void updateAddress(Integer id, AddressDto addressDto) {
+        addressRepository.findById(id)
+                .ifPresent(
+                        address -> {
+                            address.setStreet(addressDto.getStreet());
+                            address.setCity(addressDto.getCity());
+                            address.setState(addressDto.getState());
+                            addressRepository.save(address);
+                        }
+                );
     }
 }

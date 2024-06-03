@@ -47,9 +47,21 @@ public class MysqldtodemoApplication {
             publisherService.updatePublisher("Apres", publisherDto1);
             System.out.println("after update");
             System.out.println(publisherService.findPublisherByName("Apress Ltd.").get());
-            publisherService.deletePublisher(1);
+//            publisherService.deletePublisher(1);
             addressService.findAddressById(1)
                     .ifPresent(System.out::println);
+            //Modify address
+            AddressDto addressDto1 = new AddressDto();
+            addressDto1.setStreet("3000 N St");
+            addressDto1.setCity("Washington");
+            addressDto1.setState("Iowa");
+            addressService.updateAddress(
+                    1,
+                    addressDto1
+            );
+            addressService.findAddressById(1)
+                    .ifPresent(System.out::println);
+            System.out.println(publisherService.findPublisherByName("Apress Ltd.").get());
         };
     }
 
